@@ -1,36 +1,161 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# 🔖 Smart Bookmark App
 
-First, run the development server:
+A full-stack bookmark manager built with **Next.js**, **Supabase**, and **Vercel**.
+Users can securely log in with Google, save bookmarks, and manage them in real time.
+
+---
+
+## 🚀 Live Demo
+
+👉 https://smart-bookmark-app-lake.vercel.app/
+
+---
+
+## 🛠 Tech Stack
+
+* **Frontend:** Next.js (App Router, Client Components)
+* **Backend:** Supabase (PostgreSQL + Auth)
+* **Authentication:** Google OAuth via Supabase
+* **Database:** Supabase Postgres
+* **Deployment:** Vercel
+* **Language:** TypeScript
+
+---
+
+## ✨ Features
+
+* 🔐 Google OAuth Login
+* ➕ Add bookmarks
+* 🗑 Delete bookmarks
+* 📂 User-specific data (Row Level Security)
+* 🔄 Persistent login session
+* 🌐 Production deployment on Vercel
+
+---
+
+## 📦 Local Setup
+
+### 1️⃣ Clone the repository
+
+```bash
+git clone https://github.com/your-username/Smart-Bookmark-App.git
+cd Smart-Bookmark-App
+```
+
+### 2️⃣ Install dependencies
+
+```bash
+npm install
+```
+
+### 3️⃣ Create `.env.local`
+
+Add your Supabase credentials:
+
+```
+NEXT_PUBLIC_SUPABASE_URL=your_project_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
+```
+
+You can find these in:
+
+Supabase → Settings → API
+
+### 4️⃣ Run locally
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🔐 Authentication Setup (Google OAuth)
 
-To learn more about Next.js, take a look at the following resources:
+1. Enable Google provider in Supabase
+2. Add redirect URLs:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   * `http://localhost:3000`
+   * `https://your-vercel-app.vercel.app`
+3. Configure Google Cloud OAuth credentials properly
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🚀 Deployment (Vercel)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Push code to GitHub
+2. Import repository into Vercel
+3. Add environment variables in Vercel:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```
+   NEXT_PUBLIC_SUPABASE_URL
+   NEXT_PUBLIC_SUPABASE_ANON_KEY
+   ```
+4. Redeploy
+
+---
+
+# ⚠️ Challenges Faced & Solutions
+
+## 1️⃣ Auth Session Race Condition
+
+**Problem:**
+App crashed with:
+
+```
+AbortError: signal is aborted without reason
+```
+
+**Cause:**
+`onAuthStateChange` and `getSession()` were both triggering simultaneously, causing overlapping Supabase calls.
+
+**Solution:**
+
+* Properly structured initial session check
+* Controlled loading state
+* Wrapped async calls with try/catch
+* Avoided unnecessary session reloads
+
+---
+
+## 2️⃣ Google OAuth Failing in Production
+
+**Problem:**
+Login worked locally but failed on Vercel.
+
+**Cause:**
+Production redirect URL was missing in Supabase OAuth settings.
+
+**Solution:**
+Added Vercel URL to:
+
+* Supabase → Authentication → Providers → Google
+* Google Cloud Console → Authorized redirect URIs
+
+---
+
+# 📚 What I Learned
+
+* Handling authentication lifecycle in modern React apps
+* Managing Supabase sessions safely
+* Debugging production deployment issues
+* Configuring OAuth properly
+* Understanding full-stack deployment workflows
+* Importance of environment configuration
+
+---
+
+
+
+---
+
+This README makes your project look **professional and production-ready**.
+
+If you want, I can also help you improve your GitHub repo structure to make it look even more impressive 👀
+
