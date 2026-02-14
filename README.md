@@ -150,12 +150,3 @@ Added Vercel URL to:
 * Importance of environment configuration
 
 ---
-
-
-
----
-
-This README makes your project look **professional and production-ready**.
-
-If you want, I can also help you improve your GitHub repo structure to make it look even more impressive 👀
-
