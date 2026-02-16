@@ -54,8 +54,8 @@ npm install
 Add your Supabase credentials:
 
 ```
-NEXT_PUBLIC_SUPABASE_URL=your_project_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
+NEXT_PUBLIC_SUPABASE_URL=https://fotvpqvdkwotttztdusc.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_mLnnAkM9iCgOTkbu2ftvkA_Nw3OmvTd
 ```
 
 You can find these in:
